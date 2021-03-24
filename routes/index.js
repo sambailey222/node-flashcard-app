@@ -1,43 +1,32 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, response) => {
+router.get('/', (req, res) => {
     const name = req.cookies.username;
     if (name) {
-    response.render('index', { name: name })
+      res.render('index', { name });
     } else {
-        response.redirect('/hello');
+      res.redirect('/hello');
     }
 });
 
-// router.get('/cards', (request, response) => {
-//     response.render('card', { prompt: "Who is buried in Grant's Tomb?" });
-// });
-// /sandbox
-// First Name, Last Name
-// router.get('/sandbox', (req, res) => {
-//     res.render('sandbox', { colors });
-// });
-
 router.get('/hello', (req, res) => {
-    const name = req.cookies.username;
-    if (name) {
-        response.redirect('/');
-    } else {
-        res.render('hello');
-    }
-    
+  const name = req.cookies.username;
+  if (name) {
+    res.redirect('/');
+  } else {
+    res.render('hello');
+  }
 });
 
 router.post('/hello', (req, res) => {
-    res.cookie('username', req.body.username);
-    res.redirect('/');
+  res.cookie('username', req.body.username);
+  res.redirect('/');
 });
 
 router.post('/goodbye', (req, res) => {
-    res.clearCookie('username');
-    res.redirect('/hello');
-}
-)
+  res.clearCookie('username');
+  res.redirect('/hello');
+});
 
 module.exports = router;
