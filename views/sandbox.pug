@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+  head
+    title Flash Cards
+  body
+    header
+        h1 Flash Cards
+    section#content 
+        table 
+            tr
+                th First Name
+                th Last Name
+            tr 
+                td
+                    each color in colors 
+                        p= color
+                td
+                    each color in colors 
+                        p= color       
+        h2= prompt
+        if hint
+            p 
+                i Hint: #{hint}
+    footer 
+        p An app to help you study.
